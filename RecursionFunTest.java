@@ -108,7 +108,7 @@ public class RecursionFunTest {
 
   @Test
   public void testIssorted() {
-    assertTrue(rf.isSorted(new int[] { 1, 2, 3 }));
+    assertTrue(rf.isSorted(new int[] { 1, 2, 3}));
     assertTrue(rf.isSorted(new int[] { 2, 2, 2 }));
     assertTrue(rf.isSorted(new int[] { 1 }));
     assertTrue(rf.isSorted(new int[] {}));
@@ -246,8 +246,12 @@ public class RecursionFunTest {
 
   @Test
   public void testFindExitWithSmallGrid3() {
-    char[][] grid = { { '+', '+', ' ', '+' }, { ' ', ' ', ' ', '+' }, { '+', ' ', ' ', '+' }, { '+', ' ', ' ', '+' },
-        { '+', '+', '+', '+' } };
+    char[][] grid = { 
+    		{ '+', '+', ' ', '+' },
+    		{ ' ', ' ', ' ', '+' }, 
+    		{ '+', ' ', ' ', '+' }, 
+    		{ '+', ' ', ' ', '+' },
+    		{ '+', '+', '+', '+' } };
     ObstacleCourse top = new ObstacleCourse(3, 1, grid);
     assertEquals(3, top.getStartRow());
     assertEquals(1, top.getStartColumn());

@@ -63,6 +63,8 @@ public class ObstacleCourse {
 
   // This method is called by the user to begin the search for the one exit.
   public void findTheExit() {
+	sRow = 0;
+	sCol = 0;
     findExit(sRow, sCol);
   }
 
@@ -71,12 +73,26 @@ public class ObstacleCourse {
    * col where the exit was found
    */
   private boolean findExit(int row, int col) {
-    // TODO: Complete this method
-    //
-    // Do not forget to set the instance variable foundRow and 
-    // foundCol in this method when the exit is found.
-    //
-    return !false;
+    if(row == course.length - 1 && col == course[0].length - 1 && course[row][col] != ' ' ) {
+    	System.out.println("no exit");
+    	return false;
+    }
+    if (row == course.length - 1 || row == 0 || col == course[0].length - 1 || col == 0) {
+    	if (course[row][col] == ' ') {
+    		System.out.println("hit");
+    		foundRow = row;
+    		foundCol = col;
+    		System.out.println(row);
+    		return true;
+    		
+    	}
+    }
+    if (col == course[0].length - 1 && row != course.length - 1) {
+    	findExit(row + 1, 0);
+    } else {
+    	findExit(row, col + 1);
+    }
+    return false;
   }
 
 }

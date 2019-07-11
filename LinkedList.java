@@ -9,7 +9,7 @@
  *   void removeAll(E)
  *   void duplicateAll(E) 
  * 
- * @author Rick Mercer and Your Name
+ * @author Rick Mercer and Joe Muscolino
  */
 public class LinkedList<E extends Comparable<E>> {
   // extends Comparable<E> means the type must be comparable to avoid CT errors
@@ -108,22 +108,73 @@ public class LinkedList<E extends Comparable<E>> {
   }
 
   private E get(Node ref, int startIndex, int stopIndex) {
-    // TODO: Complete this method using recursion, no loop allowed.
-    return null;
+	if (startIndex == stopIndex) {
+		return ref.data;
+	}
+    if(ref != null) {
+    	return get(ref = ref.next, startIndex + 1, stopIndex);
+    	
+    }else {
+    	return null;
+    }
   }
  
   
   // Complete method removeAll(E el) so all elements that 
   // equals el are removed from this LinkedList<E>. 
   public void removeAll(E el) {
-    // This public method requires a call to a private helper method
-    // with first as an argument. It must be recursive, no loop allowed.
+    removeAllhelp(el, first);
   }
+  
+  private void removeAllhelp(E el, Node ref) {
+	  if (ref == null) {
+		  return;
+	  }
+	  if (first != null && el.equals(first.data)) {
+		  first = first.next;
+		  removeAllhelp(el, ref = first);
+	  }
+	  // INCASE AFTER WE REMOVE FIRST ELEMENT NONE ARE LEFT.
+	  if (first == null) {
+		  return;
+	  }
+	  if (ref.next != null) {
+		  if(el.equals(ref.next.data)) {
+			  ref.next = ref.next.next;
+		  } else {
+			  removeAllhelp(el, ref = ref.next);
+		  }
+	  }
+	  removeAllhelp(el, ref = ref.next);
+  }
+	
+	  
+  
 
   // Duplicate el next to each occurrence of el in this list.
   public void duplicateAll(E el) {
-    // This public method requires a call to a private helper method
-    // with first as an argument. It must be recursive, no loop allowed.
+    duplicateHelper(el, first);
+  }
+  
+  private void duplicateHelper(E el, Node ref) {
+	  if (ref == null) {
+		  System.out.println("null");
+		  return;
+	  }
+
+	  if(ref != null) {
+		  System.out.println("first2");
+		  if (el.equals(ref.data)) {
+			  Node add2 = new Node(el);
+			  add2.next = ref.next;
+			  ref.next = add2;
+			  n ++;
+			  duplicateHelper(el, ref = ref.next.next);
+		  } else {
+			  duplicateHelper(el, ref = ref.next);
+		  }
+	  }
+	  
   }
 
 
